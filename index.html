@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="id">
+<head><link rel="manifest" href="manifest.json">
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js');
+  }
+</script>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/><title>Ular Tangga Edukatif - Apipudin</title><link rel="icon" href="assets/img/favicon.png"><link rel="stylesheet" href="style.css"></head>
+<body>
+<div id="loaderOverlay"><div class="loader-card"><div class="spinner"></div><div class="loader-text">Memuat Ular Tangga Edukatif... Mohon tunggu</div></div></div>
+<div id="splash" class="hidden" role="main"><h1>🐍 Ular Tangga Edukatif</h1><p>👨‍🏫 Karya: Apipudin – SDN NAGREG 05</p><div id="creator-note">Gunakan tombol Unggah Soal jika ingin memakai soal sendiri.</div><div class="splash-actions"><button id="settingsBtn" aria-label="Pengaturan">⚙️</button><button id="startBtn" class="primary">▶ Mulai Permainan</button></div></div>
+<div id="settingsMenu" class="hidden"><div class="settings-card"><h3>Pengaturan</h3><button id="uploadBtn">🎓 Unggah Soal Sendiri</button><label><input type="checkbox" id="musicToggle" checked> Musik Latar</label><button id="aboutBtn">❓ Tentang</button><button id="closeSettings">Tutup</button></div></div>
+<div id="toasts" aria-live="polite"></div>
+<div id="gameRoot" class="hidden">
+    <button id="homeBtn" class="home-btn" aria-label="Beranda">🏠</button>
+<div id="boardContainer"><div class="board" id="board" role="img" aria-label="Papan Ular Tangga"></div><div id="pawns"></div></div><div class="controls"><div id="infoText">Siap bermain!</div></div><button class="roll-btn" id="rollBtn-1" data-player="0">🎲</button><button class="roll-btn" id="rollBtn-2" data-player="1">🎲</button><button class="roll-btn" id="rollBtn-3" data-player="2">🎲</button><button class="roll-btn" id="rollBtn-4" data-player="3">🎲</button></div>
+<input type="file" id="fileInput" accept=".xlsx" style="display:none"/>
+<audio id="bgMusic" src="assets/audio/bg-music.wav" loop preload="auto"></audio>
+<audio id="voice" src="assets/audio/voice-anak.wav" preload="auto"></audio>
+<audio id="sfx-dice" src="assets/audio/dice.wav" preload="auto"></audio>
+<audio id="sfx-move" src="assets/audio/move.wav" preload="auto"></audio>
+<audio id="sfx-correct" src="assets/audio/correct.wav" preload="auto"></audio>
+<audio id="sfx-wrong" src="assets/audio/wrong.wav" preload="auto"></audio>
+<audio id="sfx-win" src="assets/audio/win.wav" preload="auto"></audio>
+<script src="lib/xlsx.full.min.js"></script><script src="script.js"></script></body></html>
