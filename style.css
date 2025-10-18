@@ -1,30 +1,29 @@
-
+/* tema ceria klasik hijau edukatif */
 *{box-sizing:border-box}
-html,body{height:100%;margin:0;font-family:Arial, Helvetica, sans-serif;background:linear-gradient(180deg,#eaf7e9,#f7fff4);overflow:hidden;color:#123}
-#loaderOverlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:9999;background:linear-gradient(180deg,rgba(255,255,255,0.95),rgba(245,255,240,0.9))}
-.loader-card{display:flex;flex-direction:column;align-items:center;gap:12px;padding:18px 22px;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.12);background:linear-gradient(180deg,#ffffff,#f0fff0)}
+html,body{height:100%;margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#eaf7e9,#f7fff4);color:#0f3d1b;overflow:hidden}
+.loader{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(255,255,255,0.95),rgba(245,255,240,0.95));z-index:9999}
+.loader-card{display:flex;flex-direction:column;align-items:center;padding:18px;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.12);background:#fff}
 .spinner{width:56px;height:56px;border-radius:50%;border:6px solid rgba(0,0,0,0.06);border-top-color:#2fa84f;animation:spin .9s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.loader-text{font-size:1rem;color:#2d6b2f;text-align:center;font-weight:700}
 .hidden{display:none}
-#splash{width:100vw;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:12px}
-#splash h1{font-size:2rem;color:#256f31;margin:0 0 6px}
+#splash{width:100vw;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:12px;opacity:0;transition:opacity .6s}
+#splash.show{opacity:1}
+.logo{width:120px;height:120px;border-radius:12px;object-fit:cover;margin-bottom:10px}
 .splash-actions{display:flex;gap:12px;margin-top:14px}
 .primary{background:#4caf50;color:#fff;border:none;padding:10px 20px;border-radius:10px;font-size:1.05rem;cursor:pointer}
-#settingsBtn{background:#fff;border-radius:8px;border:none;padding:8px 10px;box-shadow:0 4px 12px rgba(0,0,0,0.08);cursor:pointer}
+.btn{background:#fff;border-radius:8px;border:none;padding:8px 10px;box-shadow:0 4px 12px rgba(0,0,0,0.08);cursor:pointer}
 #settingsMenu{position:fixed;top:12px;right:12px;z-index:2000}
-.settings-card{background:#fff;padding:12px;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,0.12);min-width:220px}
-#toasts{position:fixed;right:12px;bottom:12px;z-index:99999}
+.settings-card{background:#fff;padding:12px;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,0.12);min-width:220px;opacity:0;transform:translateY(-8px);transition:all .28s}
+.settings-card.show{opacity:1;transform:none}
 #boardContainer{display:flex;align-items:center;justify-content:center;padding:12px}
-.board{width:80vmin;height:80vmin;background-image:url('assets/img/papan.png');background-size:cover;background-position:center;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.08)}
+.board{width:78vmin;height:78vmin;background-image:url('assets/img/papan.png');background-size:cover;background-position:center;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.08)}
 #pawns{position:absolute;inset:0;pointer-events:none}
 .pawn{width:28px;height:28px;border-radius:50%;position:absolute;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
 .controls{width:100%;display:flex;justify-content:center;align-items:center;padding:10px;background:linear-gradient(180deg,#b6f0a6,#fff9d9);box-shadow:0 -2px 10px rgba(0,0,0,0.06)}
 .roll-btn{position:fixed;width:56px;height:56px;border-radius:50%;border:none;background:rgba(255,255,255,0.95);box-shadow:0 6px 18px rgba(0,0,0,0.12);display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;z-index:50;opacity:0.35}
 .roll-btn.active{opacity:1;transform:scale(1.04)}
 #rollBtn-1{left:12px;bottom:12px;background:#4caf50}#rollBtn-2{right:12px;bottom:12px;background:#2196f3}#rollBtn-3{right:12px;top:12px;background:#9c27b0}#rollBtn-4{left:12px;top:12px;background:#ffca28}
-@media (max-width:700px){ .board{width:92vmin;height:60vmin} .primary{padding:8px 14px} .roll-btn{width:48px;height:48px;font-size:18px} .pawn{width:22px;height:22px;font-size:10px} }
-
-
 .home-btn{position:fixed;left:10px;top:8px;width:44px;height:44px;border-radius:8px;border:none;background:rgba(255,255,255,0.95);box-shadow:0 6px 18px rgba(0,0,0,0.12);font-size:20px;z-index:100;cursor:pointer}
-@media (max-width:700px){ .home-btn{left:8px;top:8px;width:40px;height:40px} }
+.watermark{position:fixed;right:8px;bottom:8px;opacity:0.18;width:84px;height:84px;border-radius:8px;pointer-events:none}
+@media (max-width:700px){ .board{width:92vmin;height:62vmin} .primary{padding:8px 14px} .roll-btn{width:48px;height:48px;font-size:18px} .pawn{width:22px;height:22px;font-size:10px} .home-btn{left:8px;top:8px;width:40px;height:40px} }
+.hint{margin-top:12px;color:#2f6b2f;font-size:0.95rem}
