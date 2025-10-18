@@ -1,1 +1,4 @@
-[]
+[
+  {"type":"pilihan","question":"Ibu kota Indonesia?","options":["Jakarta","Bandung","Surabaya"],"answerIndex":0},
+  {"type":"benar_salah","question":"Bumi itu bulat.","answer":true}
+]
