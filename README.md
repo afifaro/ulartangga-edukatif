@@ -1,4 +1,4 @@
-Ular Tangga Edukatif - Final
-
-Versi ini berisi music lembut riang, upload soal, dan perbaikan loading.
-Unggah soal via menu ⚙️ -> Unggah Soal Sendiri (.xlsx). Replace lib/xlsx.full.min.js with full SheetJS for offline parsing.
+1. Upload semua file ke repository GitHub (public).
+2. Aktifkan Pages: Settings → Pages → Source: main branch → /root.
+3. Tunggu ~1 menit, buka: https://<username>.github.io/ulartangga-edukatif/
+4. Di Android: buka URL → pilih "Add to Home screen" untuk akses cepat.
