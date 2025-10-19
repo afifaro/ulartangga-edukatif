@@ -1,29 +1,212 @@
-/* tema ceria klasik hijau edukatif */
-*{box-sizing:border-box}
-html,body{height:100%;margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#eaf7e9,#f7fff4);color:#0f3d1b;overflow:hidden}
-.loader{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(255,255,255,0.95),rgba(245,255,240,0.95));z-index:9999}
-.loader-card{display:flex;flex-direction:column;align-items:center;padding:18px;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.12);background:#fff}
-.spinner{width:56px;height:56px;border-radius:50%;border:6px solid rgba(0,0,0,0.06);border-top-color:#2fa84f;animation:spin .9s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.hidden{display:none}
-#splash{width:100vw;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:12px;opacity:0;transition:opacity .6s}
-#splash.show{opacity:1}
-.logo{width:120px;height:120px;border-radius:12px;object-fit:cover;margin-bottom:10px}
-.splash-actions{display:flex;gap:12px;margin-top:14px}
-.primary{background:#4caf50;color:#fff;border:none;padding:10px 20px;border-radius:10px;font-size:1.05rem;cursor:pointer}
-.btn{background:#fff;border-radius:8px;border:none;padding:8px 10px;box-shadow:0 4px 12px rgba(0,0,0,0.08);cursor:pointer}
-#settingsMenu{position:fixed;top:12px;right:12px;z-index:2000}
-.settings-card{background:#fff;padding:12px;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,0.12);min-width:220px;opacity:0;transform:translateY(-8px);transition:all .28s}
-.settings-card.show{opacity:1;transform:none}
-#boardContainer{display:flex;align-items:center;justify-content:center;padding:12px}
-.board{width:78vmin;height:78vmin;background-image:url('assets/img/papan.png');background-size:cover;background-position:center;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.08)}
-#pawns{position:absolute;inset:0;pointer-events:none}
-.pawn{width:28px;height:28px;border-radius:50%;position:absolute;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
-.controls{width:100%;display:flex;justify-content:center;align-items:center;padding:10px;background:linear-gradient(180deg,#b6f0a6,#fff9d9);box-shadow:0 -2px 10px rgba(0,0,0,0.06)}
-.roll-btn{position:fixed;width:56px;height:56px;border-radius:50%;border:none;background:rgba(255,255,255,0.95);box-shadow:0 6px 18px rgba(0,0,0,0.12);display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;z-index:50;opacity:0.35}
-.roll-btn.active{opacity:1;transform:scale(1.04)}
-#rollBtn-1{left:12px;bottom:12px;background:#4caf50}#rollBtn-2{right:12px;bottom:12px;background:#2196f3}#rollBtn-3{right:12px;top:12px;background:#9c27b0}#rollBtn-4{left:12px;top:12px;background:#ffca28}
-.home-btn{position:fixed;left:10px;top:8px;width:44px;height:44px;border-radius:8px;border:none;background:rgba(255,255,255,0.95);box-shadow:0 6px 18px rgba(0,0,0,0.12);font-size:20px;z-index:100;cursor:pointer}
-.watermark{position:fixed;right:8px;bottom:8px;opacity:0.18;width:84px;height:84px;border-radius:8px;pointer-events:none}
-@media (max-width:700px){ .board{width:92vmin;height:62vmin} .primary{padding:8px 14px} .roll-btn{width:48px;height:48px;font-size:18px} .pawn{width:22px;height:22px;font-size:10px} .home-btn{left:8px;top:8px;width:40px;height:40px} }
-.hint{margin-top:12px;color:#2f6b2f;font-size:0.95rem}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: linear-gradient(180deg, #d2f8d2, #a8e6a1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#game-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1000px;
+  height: 100%;
+  background: #fdfdfd;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+header.header {
+  background-color: #4caf50;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  position: relative;
+}
+
+header .logo {
+  position: absolute;
+  left: 15px;
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #fff;
+  padding: 5px;
+}
+
+header h1 {
+  font-size: 1.5rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  position: relative;
+}
+
+#board-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+#board {
+  width: 90%;
+  max-width: 650px;
+  aspect-ratio: 1 / 1;
+  background-color: #fff;
+  border: 5px solid #4caf50;
+  border-radius: 10px;
+}
+
+#controls {
+  width: 100%;
+  background: #e8f5e9;
+  border-top: 2px solid #c8e6c9;
+  padding: 10px;
+  text-align: center;
+}
+
+#rollBtn {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.1s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+#rollBtn:hover {
+  background-color: #43a047;
+}
+
+#rollBtn:active {
+  transform: scale(0.96);
+}
+
+#dice-container {
+  margin-top: 15px;
+  height: 80px;
+}
+
+#quiz-popup {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.quiz-card {
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 25px;
+  width: 85%;
+  max-width: 400px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  animation: pop 0.3s ease;
+}
+
+.quiz-card p {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+}
+
+#quiz-options button {
+  display: block;
+  margin: 6px auto;
+  width: 80%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 2px solid #4caf50;
+  border-radius: 10px;
+  background: #f1f8e9;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#quiz-options button:hover {
+  background: #c8e6c9;
+}
+
+.footer {
+  background-color: #4caf50;
+  color: #fff;
+  text-align: center;
+  padding: 8px;
+  font-size: 0.9rem;
+}
+
+#loader {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.85);
+  z-index: 999;
+}
+
+.spinner {
+  border: 6px solid #e0f2f1;
+  border-top: 6px solid #4caf50;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pop {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 1.2rem;
+  }
+
+  #rollBtn {
+    width: 80%;
+  }
+
+  .quiz-card p {
+    font-size: 1rem;
+  }
+}
