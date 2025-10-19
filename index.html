@@ -1,88 +1,49 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ular Tangga Edukatif</title>
-  <link rel="icon" href="assets/img/favicon.png">
-  <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="style.css">
-  <!-- SheetJS CDN (dipakai untuk parsing .xlsx saat upload) -->
-  <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 </head>
 <body>
-  <!-- Loader -->
-  <div id="loaderOverlay" class="loader">
-    <div class="loader-card">
-      <div class="spinner"></div>
-      <div class="loader-text">Memuat Ular Tangga Edukatif... Mohon tunggu</div>
-    </div>
-  </div>
+  <div id="game-container">
+    <header class="header">
+      <img src="assets/img/logo_kkg.jpg" alt="Logo KKG" class="logo" />
+      <h1>Ular Tangga Edukatif</h1>
+    </header>
 
-  <!-- Splash / Menu -->
-  <main id="splash" class="hidden" role="main">
-    <img src="assets/img/logo_kkg.jpg" class="logo" alt="logo KKG">
-    <h1>Ular Tangga Edukatif</h1>
-    <p class="byline">Karya: Apipudin - SDN NAGREG 05</p>
-    <div class="splash-actions">
-      <button id="settingsBtn" class="btn" aria-label="Pengaturan">⚙️</button>
-      <button id="startBtn" class="btn primary">▶ Mulai Permainan</button>
-    </div>
-    <p class="hint">Tip: Tekan tombol Musik pada Pengaturan untuk memutar musik.</p>
-  </main>
-
-  <!-- Settings -->
-  <div id="settingsMenu" class="hidden">
-    <div class="settings-card">
-      <h3>Pengaturan</h3>
-      <div class="row">
-        <button id="uploadBtn" class="btn">🎓 Unggah Soal Sendiri (.xlsx)</button>
+    <main>
+      <div id="board-container">
+        <canvas id="board"></canvas>
       </div>
-      <label class="row"><input type="checkbox" id="musicToggle"> Musik</label>
-      <div class="row"><button id="closeSettings" class="btn">Tutup</button></div>
-    </div>
+
+      <div id="controls">
+        <button id="rollBtn" disabled>🎲 Kocok Dadu</button>
+        <div id="dice-container"></div>
+      </div>
+
+      <div id="quiz-popup" class="hidden">
+        <div class="quiz-card">
+          <p id="quiz-question"></p>
+          <div id="quiz-options"></div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>© 2025 KKG – Permainan Edukatif Interaktif</p>
+    </footer>
   </div>
 
-  <div id="toasts" aria-live="polite"></div>
-
-  <!-- Game Root -->
-  <div id="gameRoot" class="hidden">
-    <button id="homeBtn" class="home-btn" aria-label="Beranda">🏠</button>
-    <div id="boardContainer">
-      <div class="board" id="board" role="img" aria-label="Papan Ular Tangga"></div>
-      <div id="pawns"></div>
-    </div>
-
-    <div class="controls">
-      <div id="infoText">Siap bermain!</div>
-    </div>
-
-    <!-- Roll buttons per sudut (max 4 pemain) -->
-    <button class="roll-btn" id="rollBtn-1" data-player="0">🎲</button>
-    <button class="roll-btn" id="rollBtn-2" data-player="1">🎲</button>
-    <button class="roll-btn" id="rollBtn-3" data-player="2">🎲</button>
-    <button class="roll-btn" id="rollBtn-4" data-player="3">🎲</button>
+  <div id="secret-btn"></div>
+  <div id="loader" class="hidden">
+    <div class="spinner"></div>
+    <p>Memuat...</p>
   </div>
 
-  <input type="file" id="fileInput" accept=".xlsx" style="display:none"/>
-
-  <!-- Audio aset -->
-  <audio id="bgMusic" src="assets/audio/musik_bawaan.wav" loop preload="auto"></audio>
-  <audio id="voiceKid" src="assets/audio/voice_anak.wav" preload="auto"></audio>
-  <audio id="clickSfx" src="assets/audio/click.wav" preload="auto"></audio>
-  <audio id="sfx-correct" src="assets/audio/correct.wav" preload="auto"></audio>
-  <audio id="sfx-wrong" src="assets/audio/wrong.wav" preload="auto"></audio>
-
-  <!-- Lokal lib xlsx jika ingin pakai offline: /lib/xlsx.full.min.js -->
   <script src="script.js"></script>
-
-  <!-- Daftarkan SW (hanya berfungsi di https atau localhost) -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function(){
-        navigator.serviceWorker.register('/service-worker.js').catch(err => console.warn('SW register failed:', err));
-      });
-    }
-  </script>
 </body>
 </html>
